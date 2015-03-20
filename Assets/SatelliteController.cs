@@ -34,12 +34,12 @@ public class SatelliteController : MonoBehaviour {
 
 	private void focusOnTheStar() {
 
-		focusOnTheStarOnY ();
+		focusOnYOn (gameObject, fixedStar);
 //		focusOnTheStarOnRelativeX ();
 	}
 
-	private void focusOnTheStarOnY() {
-		Vector3 distance = fixedStar.transform.position - gameObject.transform.position;
+	private static void focusOnYOn(GameObject target, GameObject fixedObject) {
+		Vector3 distance = fixedObject.transform.position - target.transform.position;
 
 		float degree = Mathf.Atan (distance.z / distance.x) * Mathf.Rad2Deg;
 		if (distance.x < 0.0f) {
@@ -49,7 +49,7 @@ public class SatelliteController : MonoBehaviour {
 		}
 
 //		Debug.Log ("y: " + (transform.localEulerAngles.y));
-		transform.Rotate (new Vector3 (0.0f, (450.0f - degree) % 360.0f - transform.localEulerAngles.y, 0.0f));
+		target.transform.Rotate (new Vector3 (0.0f, (450.0f - degree) % 360.0f - target.transform.localEulerAngles.y, 0.0f));
 
 //		Debug.Log ("x: " + distance.x + ", y: " + distance.y + ", z: " + distance.z + ", tan:" + Mathf.Atan (distance.z / distance.x) * Mathf.Rad2Deg + 
 //		           ", degree:" + degree + ", subtructed:" + ((450.0f - degree) % 360.0f));
