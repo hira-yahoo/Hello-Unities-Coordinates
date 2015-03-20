@@ -3,7 +3,7 @@ using System.Collections;
 
 public class InputManager : MonoBehaviour {
 
-	public GameObject cube;
+	public GameObject item;
 
 	// Use this for initialization
 	void Start () {
@@ -44,11 +44,11 @@ public class InputManager : MonoBehaviour {
 
 	private void rorateWithRotate(int sign, Vector3 vec3) {
 		float revision = 10.0f;
-		cube.GetComponent<Transform>().Rotate(new Vector3(vec3.x * sign * revision, vec3.y * sign * revision, vec3.z * sign * revision));
+		item.GetComponent<Transform>().Rotate(new Vector3(vec3.x * sign * revision, vec3.y * sign * revision, vec3.z * sign * revision));
 	}
 
 	private void translateWithTranslate(int sign, Vector3 vec3) {
-		cube.GetComponent<Transform>().Translate(new Vector3(vec3.x * sign, vec3.y * sign, vec3.z * sign));
+		item.GetComponent<Transform>().Translate(new Vector3(vec3.x * sign, vec3.y * sign, vec3.z * sign));
 	}
 
 	private void translateWithTranslateAndConstants(int sign, Vector3 vec3) {
@@ -79,14 +79,14 @@ public class InputManager : MonoBehaviour {
 			distance = -transition.z;
 		}
 		
-		cube.GetComponent<Transform>().Translate(constant * distance);
+		item.GetComponent<Transform>().Translate(constant * distance);
 	}
 
 	private void translateUpdatingLocalPosition(int sign, Vector3 vec3) {
-		cube.transform.localPosition = new Vector3 (
-			cube.transform.localPosition.x + vec3.x * sign,
-			cube.transform.localPosition.y + vec3.y * sign,
-			cube.transform.localPosition.z + vec3.z * sign
+		item.transform.localPosition = new Vector3 (
+			item.transform.localPosition.x + vec3.x * sign,
+			item.transform.localPosition.y + vec3.y * sign,
+			item.transform.localPosition.z + vec3.z * sign
 		);
 
 	}
