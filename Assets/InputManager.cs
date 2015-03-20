@@ -33,11 +33,19 @@ public class InputManager : MonoBehaviour {
 		}
 
 		if (Input.GetKey (KeyCode.Backslash)) {
-			float revision = 5.0f;
-			cube.GetComponent<Transform>().Rotate(new Vector3(vec3.x * sign * revision, vec3.y * sign * revision, vec3.z * sign * revision));
+			rorateWithRotate(sign, vec3);
 		} else {
-			cube.GetComponent<Transform>().Translate(new Vector3(vec3.x * sign, vec3.y * sign, vec3.z * sign));
+			translateWithTranslate(sign, vec3);
 		}
 
+	}
+
+	private void rorateWithRotate(int sign, Vector3 vec3) {
+		float revision = 5.0f;
+		cube.GetComponent<Transform>().Rotate(new Vector3(vec3.x * sign * revision, vec3.y * sign * revision, vec3.z * sign * revision));
+	}
+
+	private void translateWithTranslate(int sign, Vector3 vec3) {
+		cube.GetComponent<Transform>().Translate(new Vector3(vec3.x * sign, vec3.y * sign, vec3.z * sign));
 	}
 }
