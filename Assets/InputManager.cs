@@ -36,7 +36,8 @@ public class InputManager : MonoBehaviour {
 			rorateWithRotate(sign, vec3);
 		} else {
 //			translateWithTranslate(sign, vec3);
-			translateWithTranslateAndConstants(sign, vec3);
+//			translateWithTranslateAndConstants(sign, vec3);
+			translateUpdatingLocalPosition(sign, vec3);
 		}
 
 	}
@@ -79,5 +80,14 @@ public class InputManager : MonoBehaviour {
 		}
 		
 		cube.GetComponent<Transform>().Translate(constant * distance);
+	}
+
+	private void translateUpdatingLocalPosition(int sign, Vector3 vec3) {
+		cube.transform.localPosition = new Vector3 (
+			cube.transform.localPosition.x + vec3.x * sign,
+			cube.transform.localPosition.y + vec3.y * sign,
+			cube.transform.localPosition.z + vec3.z * sign
+		);
+
 	}
 }
