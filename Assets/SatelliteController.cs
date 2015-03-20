@@ -5,9 +5,15 @@ public class SatelliteController : MonoBehaviour {
 
 	public GameObject fixedStar;
 
+	private Vector3 initialPosition;
+	private Vector3 initialFixedPosition;
+	private float currentAngle;
+
 	// Use this for initialization
 	void Start () {
-	
+		initialPosition = transform.position;
+		initialFixedPosition = fixedStar.transform.position;
+		currentAngle = 0.0f;
 	}
 	
 	// Update is called once per frame
@@ -30,6 +36,12 @@ public class SatelliteController : MonoBehaviour {
 		if (Input.GetKey ("z")) {
 			transform.Translate(Vector3.forward * sign * 0.1f);
 		}
+
+		if (Input.GetKey ("c")) {
+			//translateWithAngle()
+			transform.Translate(Vector3.forward * sign * 0.1f);
+		}
+
 	}
 
 	private void focusOnTheStar() {
