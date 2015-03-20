@@ -35,7 +35,8 @@ public class InputManager : MonoBehaviour {
 		if (Input.GetKey (KeyCode.Backslash)) {
 			rorateWithRotate(sign, vec3);
 		} else {
-			translateWithTranslate(sign, vec3);
+//			translateWithTranslate(sign, vec3);
+			translateWithTranslateAndConstants(sign, vec3);
 		}
 
 	}
@@ -47,5 +48,36 @@ public class InputManager : MonoBehaviour {
 
 	private void translateWithTranslate(int sign, Vector3 vec3) {
 		cube.GetComponent<Transform>().Translate(new Vector3(vec3.x * sign, vec3.y * sign, vec3.z * sign));
+	}
+
+	private void translateWithTranslateAndConstants(int sign, Vector3 vec3) {
+		Vector3 constant = Vector3.zero, transition = vec3 * sign;
+		float distance = 0.0f;
+		if (transition.x > 0.0f) {
+			constant = Vector3.right;
+			distance = transition.x;
+		}
+		else if (transition.x < 0.0f) {
+			constant = Vector3.left;
+			distance = -transition.x;
+		}
+		else if (transition.y > 0.0f) {
+			constant = Vector3.up;
+			distance = transition.y;
+		}
+		else if (transition.y < 0.0f) {
+			constant = Vector3.down;
+			distance = -transition.y;
+		}
+		else if (transition.z > 0.0f) {
+			constant = Vector3.forward;
+			distance = transition.z;
+		}
+		else if (transition.z < 0.0f) {
+			constant = Vector3.back;
+			distance = -transition.z;
+		}
+		
+		cube.GetComponent<Transform>().Translate(constant * distance);
 	}
 }
