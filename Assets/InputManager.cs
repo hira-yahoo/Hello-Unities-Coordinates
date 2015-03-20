@@ -41,7 +41,7 @@ public class InputManager : MonoBehaviour {
 	}
 
 	private void rorateWithRotate(int sign, Vector3 vec3) {
-		float revision = 5.0f;
+		float revision = 10.0f;
 		cube.GetComponent<Transform>().Rotate(new Vector3(vec3.x * sign * revision, vec3.y * sign * revision, vec3.z * sign * revision));
 	}
 
