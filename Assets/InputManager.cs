@@ -14,29 +14,29 @@ public class InputManager : MonoBehaviour {
 	void Update () {
 
 		int sign = 1;
-		float x = 0.0f, y = 0.0f, z = 0.0f;
+		Vector3 vec3 = new Vector3 ();
 
 		if (Input.GetKey (KeyCode.RightShift) || Input.GetKey (KeyCode.LeftShift)) {
 			sign = -1;
 		}
 
 		if (Input.GetKey (KeyCode.X)) {
-			x = 0.1f;
+			vec3.x = 0.1f;
 		}
 
 		if (Input.GetKey (KeyCode.Y)) {
-			y = 0.1f;
+			vec3.y = 0.1f;
 		}
 
 		if (Input.GetKey (KeyCode.Z)) {
-			z = 0.1f;
+			vec3.z = 0.1f;
 		}
 
 		if (Input.GetKey (KeyCode.Backslash)) {
 			float revision = 5.0f;
-			cube.GetComponent<Transform>().Rotate(new Vector3(x * sign * revision, y * sign * revision, z * sign * revision));
+			cube.GetComponent<Transform>().Rotate(new Vector3(vec3.x * sign * revision, vec3.y * sign * revision, vec3.z * sign * revision));
 		} else {
-			cube.GetComponent<Transform>().Translate(new Vector3(x * sign, y * sign, z * sign));
+			cube.GetComponent<Transform>().Translate(new Vector3(vec3.x * sign, vec3.y * sign, vec3.z * sign));
 		}
 
 	}
