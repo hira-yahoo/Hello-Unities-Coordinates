@@ -1,13 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class InputManager : MonoBehaviour {
-
-	public GameObject item;
+public class SimpleController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
@@ -44,11 +41,11 @@ public class InputManager : MonoBehaviour {
 
 	private void rorateWithRotate(int sign, Vector3 vec3) {
 		float revision = 10.0f;
-		item.GetComponent<Transform>().Rotate(new Vector3(vec3.x * sign * revision, vec3.y * sign * revision, vec3.z * sign * revision));
+		gameObject.GetComponent<Transform>().Rotate(new Vector3(vec3.x * sign * revision, vec3.y * sign * revision, vec3.z * sign * revision));
 	}
 
 	private void translateWithTranslate(int sign, Vector3 vec3) {
-		item.GetComponent<Transform>().Translate(new Vector3(vec3.x * sign, vec3.y * sign, vec3.z * sign));
+		gameObject.GetComponent<Transform>().Translate(new Vector3(vec3.x * sign, vec3.y * sign, vec3.z * sign));
 	}
 
 	private void translateWithTranslateAndConstants(int sign, Vector3 vec3) {
@@ -79,14 +76,14 @@ public class InputManager : MonoBehaviour {
 			distance = -transition.z;
 		}
 		
-		item.GetComponent<Transform>().Translate(constant * distance);
+		gameObject.GetComponent<Transform>().Translate(constant * distance);
 	}
 
 	private void translateUpdatingLocalPosition(int sign, Vector3 vec3) {
-		item.transform.localPosition = new Vector3 (
-			item.transform.localPosition.x + vec3.x * sign,
-			item.transform.localPosition.y + vec3.y * sign,
-			item.transform.localPosition.z + vec3.z * sign
+		gameObject.transform.localPosition = new Vector3 (
+			gameObject.transform.localPosition.x + vec3.x * sign,
+			gameObject.transform.localPosition.y + vec3.y * sign,
+			gameObject.transform.localPosition.z + vec3.z * sign
 		);
 
 	}
