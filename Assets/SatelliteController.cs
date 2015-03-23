@@ -39,7 +39,7 @@ public class SatelliteController : MonoBehaviour {
 
 		if (Input.GetKey ("c")) {
 			//translateWithAngle()
-			transform.Translate(Vector3.forward * sign * 0.1f);
+			//transform.Translate(Vector3.forward * sign * 0.1f);
 		}
 
 	}
