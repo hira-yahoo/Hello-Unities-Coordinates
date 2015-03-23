@@ -5,15 +5,11 @@ public class SatelliteController : MonoBehaviour {
 
 	public GameObject fixedStar;
 
-	private Vector3 initialPosition;
-	private Vector3 fixedPosition;
 	private float currentAngle;
 
 	// Use this for initialization
 	void Start () {
-		initialPosition = transform.position;
-		fixedPosition = fixedStar.transform.position;
-		updateSelfAngle ();
+		this.currentAngle = calculateSelfAngle ();
 	}
 	
 	// Update is called once per frame
@@ -45,11 +41,11 @@ public class SatelliteController : MonoBehaviour {
 
 	private void translate(Vector3 distance) {
 		transform.Translate(distance);
-		updateSelfAngle ();
+		this.currentAngle = calculateSelfAngle ();
 	}
 
-	private void updateSelfAngle() {
-		this.currentAngle = calculateAngleBetween (gameObject, fixedStar);
+	private float calculateSelfAngle() {
+		return calculateAngleBetween (gameObject, fixedStar);
 	}
 
 	private static float calculateAngleBetween(GameObject target, GameObject fixedObject) {
