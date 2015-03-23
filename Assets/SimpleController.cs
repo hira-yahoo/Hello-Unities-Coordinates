@@ -34,7 +34,7 @@ public class SimpleController : MonoBehaviour {
 		} else {
 //			translateWithTranslate(sign, vec3);
 //			translateWithTranslateAndConstants(sign, vec3);
-			translateUpdatingLocalPosition(sign, vec3);
+			translateLocalPositionUpdating(sign, vec3);
 		}
 
 	}
@@ -79,7 +79,7 @@ public class SimpleController : MonoBehaviour {
 		gameObject.GetComponent<Transform>().Translate(constant * distance);
 	}
 
-	private void translateUpdatingLocalPosition(int sign, Vector3 vec3) {
+	private void translateLocalPositionUpdating(int sign, Vector3 vec3) {
 		gameObject.transform.localPosition = new Vector3 (
 			gameObject.transform.localPosition.x + vec3.x * sign,
 			gameObject.transform.localPosition.y + vec3.y * sign,
