@@ -69,13 +69,17 @@ public class SatelliteController : MonoBehaviour {
 
 	private static void focusOnYOn(GameObject target, GameObject fixedObject) {
 		float angle = calculateAngleBetween (target, fixedObject);
+		setAngle (target, angle);
 
 //		Debug.Log ("y: " + (transform.localEulerAngles.y));
-		target.transform.Rotate (new Vector3 (0.0f, (450.0f - angle) % 360.0f - target.transform.localEulerAngles.y, 0.0f));
 
 //		Debug.Log ("x: " + distance.x + ", y: " + distance.y + ", z: " + distance.z + ", tan:" + Mathf.Atan (distance.z / distance.x) * Mathf.Rad2Deg + 
 //		           ", degree:" + degree + ", subtructed:" + ((450.0f - degree) % 360.0f));
 
+	}
+
+	private static void setAngle(GameObject target, float angle) {
+		target.transform.Rotate (new Vector3 (0.0f, (450.0f - angle) % 360.0f - target.transform.localEulerAngles.y, 0.0f));
 	}
 
 //	private void focusOnTheStarOnRelativeX () {
