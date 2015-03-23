@@ -13,7 +13,6 @@ public class SatelliteController : MonoBehaviour {
 	void Start () {
 		initialPosition = transform.position;
 		fixedPosition = fixedStar.transform.position;
-		currentAngle = transform.rotation.y;
 		updateSelfAngle ();
 	}
 	
