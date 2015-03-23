@@ -57,15 +57,15 @@ public class SatelliteController : MonoBehaviour {
 	private static void focusOnYOn(GameObject target, GameObject fixedObject) {
 		Vector3 distance = fixedObject.transform.position - target.transform.position;
 
-		float degree = Mathf.Atan (distance.z / distance.x) * Mathf.Rad2Deg;
+		float angle = Mathf.Atan (distance.z / distance.x) * Mathf.Rad2Deg;
 		if (distance.x < 0.0f) {
-			degree += 180.0f;
+			angle += 180.0f;
 		} else if (distance.y < 0.0f) {
-			degree += 360.0f;
+			angle += 360.0f;
 		}
 
 //		Debug.Log ("y: " + (transform.localEulerAngles.y));
-		target.transform.Rotate (new Vector3 (0.0f, (450.0f - degree) % 360.0f - target.transform.localEulerAngles.y, 0.0f));
+		target.transform.Rotate (new Vector3 (0.0f, (450.0f - angle) % 360.0f - target.transform.localEulerAngles.y, 0.0f));
 
 //		Debug.Log ("x: " + distance.x + ", y: " + distance.y + ", z: " + distance.z + ", tan:" + Mathf.Atan (distance.z / distance.x) * Mathf.Rad2Deg + 
 //		           ", degree:" + degree + ", subtructed:" + ((450.0f - degree) % 360.0f));
