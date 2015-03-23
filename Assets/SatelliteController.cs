@@ -13,7 +13,8 @@ public class SatelliteController : MonoBehaviour {
 	void Start () {
 		initialPosition = transform.position;
 		fixedPosition = fixedStar.transform.position;
-		currentAngle = 0.0f;
+		currentAngle = transform.rotation.y;
+		calclateSelfAngle ();
 	}
 	
 	// Update is called once per frame
@@ -46,6 +47,11 @@ public class SatelliteController : MonoBehaviour {
 
 	private void translate(Vector3 distance) {
 		transform.Translate(distance);
+		calclateSelfAngle ();
+	}
+
+	private void calclateSelfAngle() {
+		this.currentAngle = calculateAngleBetween (gameObject, fixedStar);
 	}
 
 	private static float calculateAngleBetween(GameObject target, GameObject fixedObject) {
@@ -68,7 +74,6 @@ public class SatelliteController : MonoBehaviour {
 	}
 	
 	private void focusOnYOn(GameObject target, GameObject fixedObject) {
-		this.currentAngle = calculateAngleBetween (target, fixedObject);
 		setAngle (target, this.currentAngle);
 
 //		Debug.Log ("y: " + (transform.localEulerAngles.y));
