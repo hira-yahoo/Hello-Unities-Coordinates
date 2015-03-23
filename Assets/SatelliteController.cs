@@ -48,12 +48,6 @@ public class SatelliteController : MonoBehaviour {
 		transform.Translate(distance);
 	}
 
-	private void focusOnTheStar() {
-
-		focusOnYOn (gameObject, fixedStar);
-//		focusOnTheStarOnRelativeX ();
-	}
-
 	private static float calculateAngleBetween(GameObject target, GameObject fixedObject) {
 		Vector3 distance = fixedObject.transform.position - target.transform.position;
 		
@@ -67,6 +61,12 @@ public class SatelliteController : MonoBehaviour {
 		return angle;
 	}
 
+	private void focusOnTheStar() {
+		
+		focusOnYOn (gameObject, fixedStar);
+		//		focusOnTheStarOnRelativeX ();
+	}
+	
 	private void focusOnYOn(GameObject target, GameObject fixedObject) {
 		this.currentAngle = calculateAngleBetween (target, fixedObject);
 		setAngle (target, this.currentAngle);
