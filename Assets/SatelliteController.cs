@@ -14,7 +14,7 @@ public class SatelliteController : MonoBehaviour {
 		initialPosition = transform.position;
 		fixedPosition = fixedStar.transform.position;
 		currentAngle = transform.rotation.y;
-		calclateSelfAngle ();
+		updateSelfAngle ();
 	}
 	
 	// Update is called once per frame
@@ -47,10 +47,10 @@ public class SatelliteController : MonoBehaviour {
 
 	private void translate(Vector3 distance) {
 		transform.Translate(distance);
-		calclateSelfAngle ();
+		updateSelfAngle ();
 	}
 
-	private void calclateSelfAngle() {
+	private void updateSelfAngle() {
 		this.currentAngle = calculateAngleBetween (gameObject, fixedStar);
 	}
 
