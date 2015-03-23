@@ -19,9 +19,8 @@ public class SatelliteController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-//		if (Input.GetKey ("f")) {
-			if (Input.GetKeyDown ("f")) {
-				focusOnTheStar ();
+		if (Input.GetKeyDown ("f")) {
+			focusOnTheStar ();
 		}
 
 		int sign = 1;
