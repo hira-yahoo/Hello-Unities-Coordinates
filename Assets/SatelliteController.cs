@@ -6,13 +6,13 @@ public class SatelliteController : MonoBehaviour {
 	public GameObject fixedStar;
 
 	private Vector3 initialPosition;
-	private Vector3 initialFixedPosition;
+	private Vector3 fixedPosition;
 	private float currentAngle;
 
 	// Use this for initialization
 	void Start () {
 		initialPosition = transform.position;
-		initialFixedPosition = fixedStar.transform.position;
+		fixedPosition = fixedStar.transform.position;
 		currentAngle = 0.0f;
 	}
 	
