@@ -67,9 +67,9 @@ public class SatelliteController : MonoBehaviour {
 		return angle;
 	}
 
-	private static void focusOnYOn(GameObject target, GameObject fixedObject) {
-		float angle = calculateAngleBetween (target, fixedObject);
-		setAngle (target, angle);
+	private void focusOnYOn(GameObject target, GameObject fixedObject) {
+		this.currentAngle = calculateAngleBetween (target, fixedObject);
+		setAngle (target, this.currentAngle);
 
 //		Debug.Log ("y: " + (transform.localEulerAngles.y));
 
