@@ -30,11 +30,11 @@ public class SatelliteController : MonoBehaviour {
 		}
 
 		if (Input.GetKey ("x")) {
-			transform.Translate(Vector3.right * sign * 0.1f);
+			translate(Vector3.right * sign * 0.1f);
 		}
 
 		if (Input.GetKey ("z")) {
-			transform.Translate(Vector3.forward * sign * 0.1f);
+			translate(Vector3.forward * sign * 0.1f);
 		}
 
 		if (Input.GetKey ("c")) {
@@ -42,6 +42,10 @@ public class SatelliteController : MonoBehaviour {
 			//transform.Translate(Vector3.forward * sign * 0.1f);
 		}
 
+	}
+
+	private void translate(Vector3 distance) {
+		transform.Translate(distance);
 	}
 
 	private void focusOnTheStar() {
