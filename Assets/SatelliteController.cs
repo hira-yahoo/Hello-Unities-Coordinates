@@ -20,7 +20,7 @@ public class SatelliteController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown ("f")) {
-			focusOnTheStar ();
+			setAngle (gameObject, this.currentAngle);
 		}
 
 		int sign = 1;
@@ -64,22 +64,6 @@ public class SatelliteController : MonoBehaviour {
 		}
 
 		return angle;
-	}
-
-	private void focusOnTheStar() {
-		
-		focusOnYOn (gameObject, fixedStar);
-		//		focusOnTheStarOnRelativeX ();
-	}
-	
-	private void focusOnYOn(GameObject target, GameObject fixedObject) {
-		setAngle (target, this.currentAngle);
-
-//		Debug.Log ("y: " + (transform.localEulerAngles.y));
-
-//		Debug.Log ("x: " + distance.x + ", y: " + distance.y + ", z: " + distance.z + ", tan:" + Mathf.Atan (distance.z / distance.x) * Mathf.Rad2Deg + 
-//		           ", degree:" + degree + ", subtructed:" + ((450.0f - degree) % 360.0f));
-
 	}
 
 	private static void setAngle(GameObject target, float angle) {
