@@ -5,7 +5,7 @@ public class SatelliteController : MonoBehaviour {
 
 	public GameObject fixedStar;
 
-	private float currentAngle;
+	private PositionOfSatellite currentAngle;
 
 	// Use this for initialization
 	void Start () {
@@ -15,7 +15,7 @@ public class SatelliteController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown ("f")) {
-			setAngle (gameObject, this.currentAngle);
+			setAngle (gameObject, this.currentAngle.getAngle());
 		}
 
 		int sign = 1;
@@ -44,11 +44,11 @@ public class SatelliteController : MonoBehaviour {
 		this.currentAngle = calculateSelfAngle ();
 	}
 
-	private float calculateSelfAngle() {
+	private PositionOfSatellite calculateSelfAngle() {
 		return calculateAngleBetween (gameObject, fixedStar);
 	}
 
-	private static float calculateAngleBetween(GameObject target, GameObject fixedObject) {
+	private static PositionOfSatellite calculateAngleBetween(GameObject target, GameObject fixedObject) {
 		Vector3 distance = fixedObject.transform.position - target.transform.position;
 		
 		float angle = Mathf.Atan (distance.z / distance.x) * Mathf.Rad2Deg;
@@ -58,7 +58,8 @@ public class SatelliteController : MonoBehaviour {
 			angle += 360.0f;
 		}
 
-		return angle;
+		return new PositionOfSatellite (
+			angle, Mathf.Sqrt(Mathf.Pow(distance.z, 2) + Mathf.Pow(distance.x, 2)));
 	}
 
 	private static void setAngle(GameObject target, float angle) {

@@ -3,8 +3,8 @@
 	private float angle;
 	private float distance;
 
-	PositionOfSatellite() {
-		set (0.0f, 0.0f);
+	public PositionOfSatellite(float angle, float distance) {
+		set (angle, distance);
 	}
 
 	public void set(float angle, float distance) {
