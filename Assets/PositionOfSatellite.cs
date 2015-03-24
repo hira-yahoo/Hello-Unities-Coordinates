@@ -12,6 +12,10 @@
 		return this.angle;
 	}
 
+	public void increaseAngle(float angle) {
+		this.angle += angle;
+	}
+
 	public void setDistance(float distance) {
 		this.distance = distance;
 	}

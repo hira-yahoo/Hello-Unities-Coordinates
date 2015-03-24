@@ -33,15 +33,42 @@ public class SatelliteController : MonoBehaviour {
 		}
 
 		if (Input.GetKey ("c")) {
-			//translateWithAngle()
-			//transform.Translate(Vector3.forward * sign * 0.1f);
+			translateCircling(1.0f * sign);
+			setAngle (gameObject, this.currentPosition.getAngle());
 		}
 
+	}
+
+	private void translateCircling(float angle) {
+		Vector3 previousPosition = transform.position;
+		Vector3 distanceFromPreviousPosition = new Vector3 ();
+		distanceFromPreviousPosition.x = fixedStar.transform.position.x - previousPosition.x;
+		distanceFromPreviousPosition.z = fixedStar.transform.position.z - previousPosition.z;
+
+		this.currentPosition.increaseAngle (angle);
+
+		float currentAngle = this.currentPosition.getAngle ();
+
+
+		Vector3 distanceToTheStar = new Vector3 ();
+
+		distanceToTheStar.x = 
+			this.currentPosition.getDistance() * 
+				Mathf.Cos (currentAngle * Mathf.Deg2Rad);
+
+		distanceToTheStar.z = 
+				this.currentPosition.getDistance() * 
+				Mathf.Sin (currentAngle * Mathf.Deg2Rad);
+
+
+		transform.localPosition = fixedStar.transform.position - distanceToTheStar;
 	}
 
 	private void translate(Vector3 distance) {
 		transform.Translate(distance);
 		this.currentPosition = calculateSelfAngle ();
+//Debug.Log ("Angle: " + this.currentPosition.getAngle ());
+
 	}
 
 	private PositionOfSatellite calculateSelfAngle() {
