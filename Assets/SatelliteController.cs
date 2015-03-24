@@ -5,17 +5,17 @@ public class SatelliteController : MonoBehaviour {
 
 	public GameObject fixedStar;
 
-	private PositionOfSatellite currentAngle;
+	private PositionOfSatellite currentPosition;
 
 	// Use this for initialization
 	void Start () {
-		this.currentAngle = calculateSelfAngle ();
+		this.currentPosition = calculateSelfAngle ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown ("f")) {
-			setAngle (gameObject, this.currentAngle.getAngle());
+			setAngle (gameObject, this.currentPosition.getAngle());
 		}
 
 		int sign = 1;
@@ -41,7 +41,7 @@ public class SatelliteController : MonoBehaviour {
 
 	private void translate(Vector3 distance) {
 		transform.Translate(distance);
-		this.currentAngle = calculateSelfAngle ();
+		this.currentPosition = calculateSelfAngle ();
 	}
 
 	private PositionOfSatellite calculateSelfAngle() {
