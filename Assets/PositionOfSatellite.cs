@@ -4,12 +4,8 @@
 	private float distance;
 
 	public PositionOfSatellite(float angle, float distance) {
-		setAngle (angle);
-		setDistance (distance);
-	}
-
-	public void setAngle(float angle) {
 		this.angle = angle;
+		setDistance (distance);
 	}
 
 	public float getAngle() {
@@ -23,5 +19,7 @@
 	public float getDistance() {
 		return this.distance;
 	}
+
+
 
 }
