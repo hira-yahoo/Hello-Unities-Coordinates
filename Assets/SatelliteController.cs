@@ -15,6 +15,7 @@ public class SatelliteController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown ("f")) {
+//Debug.Log("Vertical: " + this.currentPosition.getVerticalAngle());
 			setHorizontalAngle (gameObject, this.currentPosition.getHorizontalAngle());
 		}
 
@@ -82,10 +83,12 @@ public class SatelliteController : MonoBehaviour {
 
 	private static PositionOfSatellite calculateAngleBetween(GameObject target, GameObject fixedObject) {
 		Vector3 distance = fixedObject.transform.position - target.transform.position;
-		
+
 		return new PositionOfSatellite (
 			calculateAngleBySides(new Vector2(distance.x, distance.z)), 
-			0.0f, 
+			calculateAngleBySides(new Vector2(-distance.y, 
+				Mathf.Sqrt(Mathf.Pow (distance.x, 2) + Mathf.Pow (distance.z, 2))
+		                                  )),
 			Mathf.Sqrt(Mathf.Pow(distance.z, 2) + Mathf.Pow(distance.x, 2)));
 	}
 

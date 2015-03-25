@@ -14,6 +14,10 @@ public class PositionOfSatellite {
 		return this.horizontalAngle;
 	}
 
+	public float getVerticalAngle() {
+		return this.verticalAngle;
+	}
+
 	public void increaseHorizontalAngle(float angle) {
 		this.horizontalAngle += angle;
 	}
