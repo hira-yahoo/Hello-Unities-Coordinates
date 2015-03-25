@@ -90,13 +90,13 @@ public class SatelliteController : MonoBehaviour {
 	}
 
 	private static float calculateAngleBySides(Vector3 distance) {
-		float horizontalAngle = Mathf.Atan (distance.z / distance.x) * Mathf.Rad2Deg;
+		float result = Mathf.Atan (distance.z / distance.x) * Mathf.Rad2Deg;
 		if (distance.x < 0.0f) {
-			horizontalAngle += 180.0f;
+			result += 180.0f;
 		} else if (distance.y < 0.0f) {
-			horizontalAngle += 360.0f;
+			result += 360.0f;
 		}
-		return horizontalAngle;
+		return result;
 	}
 
 	private static void setHorizontalAngle(GameObject target, float angle) {
