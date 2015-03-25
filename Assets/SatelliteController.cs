@@ -93,8 +93,6 @@ public class SatelliteController : MonoBehaviour {
 		float result = Mathf.Atan (distance.z / distance.x) * Mathf.Rad2Deg;
 		if (distance.x < 0.0f) {
 			result += 180.0f;
-		} else if (distance.y < 0.0f) {
-			result += 360.0f;
 		}
 		return result;
 	}
