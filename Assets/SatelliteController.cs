@@ -91,7 +91,7 @@ public class SatelliteController : MonoBehaviour {
 		}
 
 		return new PositionOfSatellite (
-			angle, Mathf.Sqrt(Mathf.Pow(distance.z, 2) + Mathf.Pow(distance.x, 2)));
+			angle, 0.0f, Mathf.Sqrt(Mathf.Pow(distance.z, 2) + Mathf.Pow(distance.x, 2)));
 	}
 
 	private static void setHorizontalAngle(GameObject target, float angle) {
