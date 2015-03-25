@@ -83,15 +83,20 @@ public class SatelliteController : MonoBehaviour {
 	private static PositionOfSatellite calculateAngleBetween(GameObject target, GameObject fixedObject) {
 		Vector3 distance = fixedObject.transform.position - target.transform.position;
 		
+		return new PositionOfSatellite (
+			calculateAngleBySides(distance), 
+			0.0f, 
+			Mathf.Sqrt(Mathf.Pow(distance.z, 2) + Mathf.Pow(distance.x, 2)));
+	}
+
+	private static float calculateAngleBySides(Vector3 distance) {
 		float horizontalAngle = Mathf.Atan (distance.z / distance.x) * Mathf.Rad2Deg;
 		if (distance.x < 0.0f) {
 			horizontalAngle += 180.0f;
 		} else if (distance.y < 0.0f) {
 			horizontalAngle += 360.0f;
 		}
-
-		return new PositionOfSatellite (
-			horizontalAngle, 0.0f, Mathf.Sqrt(Mathf.Pow(distance.z, 2) + Mathf.Pow(distance.x, 2)));
+		return horizontalAngle;
 	}
 
 	private static void setHorizontalAngle(GameObject target, float angle) {
