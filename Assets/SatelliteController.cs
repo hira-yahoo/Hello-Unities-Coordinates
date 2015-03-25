@@ -28,6 +28,10 @@ public class SatelliteController : MonoBehaviour {
 			translate(Vector3.right * sign * 0.1f);
 		}
 
+		if (Input.GetKey ("y")) {
+			translate(Vector3.up * sign * 0.1f);
+		}
+
 		if (Input.GetKey ("z")) {
 			translate(Vector3.forward * sign * 0.1f);
 		}
