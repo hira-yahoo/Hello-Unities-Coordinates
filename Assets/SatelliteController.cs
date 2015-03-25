@@ -60,8 +60,9 @@ public class SatelliteController : MonoBehaviour {
 				this.currentPosition.getDistance() * 
 				Mathf.Sin (currentAngle * Mathf.Deg2Rad);
 
-
-		transform.localPosition = fixedStar.transform.position - distanceToTheStar;
+		float tmpY = transform.localPosition.y;
+		Vector3 tmpPos = fixedStar.transform.position - distanceToTheStar;
+		transform.localPosition = new Vector3 (tmpPos.x, tmpY, tmpPos.z);
 	}
 
 	private void translate(Vector3 distance) {
