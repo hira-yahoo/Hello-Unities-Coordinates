@@ -19,6 +19,11 @@ public class SatelliteController : MonoBehaviour {
 			setHorizontalAngle (gameObject, this.currentPosition.getHorizontalAngle());
 		}
 
+		if (Input.GetKeyDown ("g")) {
+// Debug.Log("Vertical: " + this.currentPosition.getVerticalAngle());
+			setVerticalAngle (gameObject, this.currentPosition.getVerticalAngle ());
+		}
+
 		int sign = 1;
 
 		if (Input.GetKey (KeyCode.RightShift) || Input.GetKey (KeyCode.LeftShift)) {
@@ -104,6 +109,10 @@ public class SatelliteController : MonoBehaviour {
 		target.transform.Rotate (new Vector3 (0.0f, (450.0f - angle) % 360.0f - target.transform.localEulerAngles.y, 0.0f));
 	}
 
-//	private void focusOnTheStarOnRelativeX () {
+	private static void setVerticalAngle(GameObject target, float angle) {
+		target.transform.Rotate (new Vector3 ((450.0f - angle) % 360.0f - target.transform.localEulerAngles.x, 0.0f, 0.0f));
+	}
+
+	//	private void focusOnTheStarOnRelativeX () {
 	//	}
 }
