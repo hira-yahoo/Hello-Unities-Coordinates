@@ -84,13 +84,13 @@ public class SatelliteController : MonoBehaviour {
 		Vector3 distance = fixedObject.transform.position - target.transform.position;
 		
 		return new PositionOfSatellite (
-			calculateAngleBySides(distance), 
+			calculateAngleBySides(new Vector2(distance.x, distance.z)), 
 			0.0f, 
 			Mathf.Sqrt(Mathf.Pow(distance.z, 2) + Mathf.Pow(distance.x, 2)));
 	}
 
-	private static float calculateAngleBySides(Vector3 distance) {
-		float result = Mathf.Atan (distance.z / distance.x) * Mathf.Rad2Deg;
+	private static float calculateAngleBySides(Vector2 distance) {
+		float result = Mathf.Atan (distance.y / distance.x) * Mathf.Rad2Deg;
 		if (distance.x < 0.0f) {
 			result += 180.0f;
 		}
