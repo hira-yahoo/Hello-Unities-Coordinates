@@ -1,19 +1,19 @@
-﻿public class PositionOfSatellite {
+public class PositionOfSatellite {
 
-	private float angle;
+	private float horizontalAngle;
 	private float distance;
 
-	public PositionOfSatellite(float angle, float distance) {
-		this.angle = angle;
+	public PositionOfSatellite(float horizontalAngle, float distance) {
+		this.horizontalAngle = horizontalAngle;
 		setDistance (distance);
 	}
 
-	public float getAngle() {
-		return this.angle;
+	public float getHorizontalAngle() {
+		return this.horizontalAngle;
 	}
 
-	public void increaseAngle(float angle) {
-		this.angle += angle;
+	public void increaseHorizontalAngle(float angle) {
+		this.horizontalAngle += angle;
 	}
 
 	public void setDistance(float distance) {

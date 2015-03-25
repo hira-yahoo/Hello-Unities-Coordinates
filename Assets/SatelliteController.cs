@@ -15,7 +15,7 @@ public class SatelliteController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown ("f")) {
-			setAngle (gameObject, this.currentPosition.getAngle());
+			setHorizontalAngle (gameObject, this.currentPosition.getHorizontalAngle());
 		}
 
 		int sign = 1;
@@ -38,7 +38,7 @@ public class SatelliteController : MonoBehaviour {
 
 		if (Input.GetKey ("c")) {
 			translateCircling(1.0f * sign);
-			setAngle (gameObject, this.currentPosition.getAngle());
+			setHorizontalAngle (gameObject, this.currentPosition.getHorizontalAngle());
 		}
 
 	}
@@ -49,9 +49,9 @@ public class SatelliteController : MonoBehaviour {
 		distanceFromPreviousPosition.x = fixedStar.transform.position.x - previousPosition.x;
 		distanceFromPreviousPosition.z = fixedStar.transform.position.z - previousPosition.z;
 
-		this.currentPosition.increaseAngle (angle);
+		this.currentPosition.increaseHorizontalAngle (angle);
 
-		float currentAngle = this.currentPosition.getAngle ();
+		float currentAngle = this.currentPosition.getHorizontalAngle ();
 
 
 		Vector3 distanceToTheStar = new Vector3 ();
@@ -94,7 +94,7 @@ public class SatelliteController : MonoBehaviour {
 			angle, Mathf.Sqrt(Mathf.Pow(distance.z, 2) + Mathf.Pow(distance.x, 2)));
 	}
 
-	private static void setAngle(GameObject target, float angle) {
+	private static void setHorizontalAngle(GameObject target, float angle) {
 		target.transform.Rotate (new Vector3 (0.0f, (450.0f - angle) % 360.0f - target.transform.localEulerAngles.y, 0.0f));
 	}
 
