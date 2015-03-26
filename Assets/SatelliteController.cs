@@ -4,11 +4,13 @@ using System.Collections;
 public class SatelliteController : MonoBehaviour {
 
 	public GameObject fixedStar;
+	public GameObject satelliteObject;
 
 	private PositionOfSatellite currentPosition;
 
 	// Use this for initialization
 	void Start () {
+		this.satelliteObject = gameObject;
 		this.currentPosition = calculateSelfAngle ();
 	}
 	
@@ -16,12 +18,12 @@ public class SatelliteController : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown ("f")) {
 //Debug.Log("Vertical: " + this.currentPosition.getVerticalAngle());
-			setHorizontalAngle (gameObject, this.currentPosition.getHorizontalAngle());
+			setHorizontalAngle (this.satelliteObject, this.currentPosition.getHorizontalAngle());
 		}
 
 		if (Input.GetKeyDown ("g")) {
 // Debug.Log("Vertical: " + this.currentPosition.getVerticalAngle());
-			setVerticalAngle (gameObject, this.currentPosition.getVerticalAngle ());
+			setVerticalAngle (this.satelliteObject, this.currentPosition.getVerticalAngle ());
 		}
 
 		int sign = 1;
@@ -44,13 +46,13 @@ public class SatelliteController : MonoBehaviour {
 
 		if (Input.GetKey ("c")) {
 			translateCircling(1.0f * sign);
-			setHorizontalAngle (gameObject, this.currentPosition.getHorizontalAngle());
+			setHorizontalAngle (this.satelliteObject, this.currentPosition.getHorizontalAngle());
 		}
 
 	}
 
 	private void translateCircling(float angle) {
-		Vector3 previousPosition = transform.position;
+		Vector3 previousPosition = this.satelliteObject.transform.position;
 		Vector3 distanceFromPreviousPosition = new Vector3 ();
 		distanceFromPreviousPosition.x = fixedStar.transform.position.x - previousPosition.x;
 		distanceFromPreviousPosition.z = fixedStar.transform.position.z - previousPosition.z;
@@ -70,20 +72,20 @@ public class SatelliteController : MonoBehaviour {
 				this.currentPosition.getDistance() * 
 				Mathf.Sin (currentAngle * Mathf.Deg2Rad);
 
-		float tmpY = transform.localPosition.y;
+		float tmpY = this.satelliteObject.transform.localPosition.y;
 		Vector3 tmpPos = fixedStar.transform.position - distanceToTheStar;
-		transform.localPosition = new Vector3 (tmpPos.x, tmpY, tmpPos.z);
+		this.satelliteObject.transform.localPosition = new Vector3 (tmpPos.x, tmpY, tmpPos.z);
 	}
 
 	private void translate(Vector3 distance) {
-		transform.Translate(distance);
+		this.satelliteObject.transform.Translate(distance);
 		this.currentPosition = calculateSelfAngle ();
 //Debug.Log ("Angle: " + this.currentPosition.getAngle ());
 
 	}
 
 	private PositionOfSatellite calculateSelfAngle() {
-		return calculateAngleBetween (gameObject, fixedStar);
+		return calculateAngleBetween (this.satelliteObject, fixedStar);
 	}
 
 	private static PositionOfSatellite calculateAngleBetween(GameObject target, GameObject fixedObject) {
