@@ -10,7 +10,9 @@ public class SatelliteController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		this.satelliteObject = gameObject;
+		if (this.satelliteObject == null) {
+			this.satelliteObject = gameObject;
+		}
 		this.currentPosition = calculateSelfAngle ();
 	}
 	
