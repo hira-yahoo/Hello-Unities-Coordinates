@@ -4,7 +4,6 @@ using System.Collections;
 public class SatelliteController : MonoBehaviour {
 
 	public GameObject fixedStar;
-	private GameObject satelliteObject;
 	private int currentSatellite = 0;
 	public GameObject[] satelliteObjects;
 
@@ -12,6 +11,10 @@ public class SatelliteController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		this.currentPosition = calculateSelfAngle ();
+	}
+
+	private GameObject getSatelliteObject() {
 		if (this.satelliteObjects.Length == 0) {
 			this.satelliteObjects = new GameObject[]{gameObject};
 		}
@@ -19,21 +22,19 @@ public class SatelliteController : MonoBehaviour {
 			this.satelliteObjects [0] = gameObject;
 		}
 
-		satelliteObject = this.satelliteObjects [0];
-
-		this.currentPosition = calculateSelfAngle ();
+		return this.satelliteObjects [currentSatellite];
 	}
 
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown ("f")) {
 //Debug.Log("Vertical: " + this.currentPosition.getVerticalAngle());
-			setHorizontalAngle (this.satelliteObject, this.currentPosition.getHorizontalAngle());
+			setHorizontalAngle (getSatelliteObject(), this.currentPosition.getHorizontalAngle());
 		}
 
 		if (Input.GetKeyDown ("g")) {
 // Debug.Log("Vertical: " + this.currentPosition.getVerticalAngle());
-			setVerticalAngle (this.satelliteObject, this.currentPosition.getVerticalAngle ());
+			setVerticalAngle (getSatelliteObject(), this.currentPosition.getVerticalAngle ());
 		}
 
 		int sign = 1;
@@ -56,13 +57,13 @@ public class SatelliteController : MonoBehaviour {
 
 		if (Input.GetKey ("c")) {
 			translateCircling(1.0f * sign);
-			setHorizontalAngle (this.satelliteObject, this.currentPosition.getHorizontalAngle());
+			setHorizontalAngle (getSatelliteObject(), this.currentPosition.getHorizontalAngle());
 		}
 
 	}
 
 	private void translateCircling(float angle) {
-		Vector3 previousPosition = this.satelliteObject.transform.position;
+		Vector3 previousPosition = getSatelliteObject().transform.position;
 		Vector3 distanceFromPreviousPosition = new Vector3 ();
 		distanceFromPreviousPosition.x = fixedStar.transform.position.x - previousPosition.x;
 		distanceFromPreviousPosition.z = fixedStar.transform.position.z - previousPosition.z;
@@ -82,20 +83,20 @@ public class SatelliteController : MonoBehaviour {
 				this.currentPosition.getDistance() * 
 				Mathf.Sin (currentAngle * Mathf.Deg2Rad);
 
-		float tmpY = this.satelliteObject.transform.localPosition.y;
+		float tmpY = getSatelliteObject().transform.localPosition.y;
 		Vector3 tmpPos = fixedStar.transform.position - distanceToTheStar;
-		this.satelliteObject.transform.localPosition = new Vector3 (tmpPos.x, tmpY, tmpPos.z);
+		getSatelliteObject().transform.localPosition = new Vector3 (tmpPos.x, tmpY, tmpPos.z);
 	}
 
 	private void translate(Vector3 distance) {
-		this.satelliteObject.transform.Translate(distance);
+		getSatelliteObject().transform.Translate(distance);
 		this.currentPosition = calculateSelfAngle ();
 //Debug.Log ("Angle: " + this.currentPosition.getAngle ());
 
 	}
 
 	private PositionOfSatellite calculateSelfAngle() {
-		return calculateAngleBetween (this.satelliteObject, fixedStar);
+		return calculateAngleBetween (getSatelliteObject(), fixedStar);
 	}
 
 	private static PositionOfSatellite calculateAngleBetween(GameObject target, GameObject fixedObject) {
