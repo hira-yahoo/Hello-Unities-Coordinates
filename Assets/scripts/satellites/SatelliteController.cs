@@ -43,20 +43,40 @@ public class SatelliteController : MonoBehaviour {
 			sign = -1;
 		}
 
+		bool rotation = false;
+		if (Input.GetKey (KeyCode.Backslash)) {
+			rotation = true;
+		}
+
 		if (Input.GetKeyDown ("s")) {
 			seekSatellite(sign == 1);
 		}
 
 		if (Input.GetKey ("x")) {
-			translate(Vector3.right * sign * 0.1f);
+			if (rotation) {
+				rotate (Vector3.right * sign);
+			}
+			else {
+				translate(Vector3.right * sign * 0.1f);
+			}
 		}
 
 		if (Input.GetKey ("y")) {
-			translate(Vector3.up * sign * 0.1f);
+			if (rotation) {
+				rotate (Vector3.up * sign);
+			}
+			else {
+				translate(Vector3.up * sign * 0.1f);
+			}
 		}
 
 		if (Input.GetKey ("z")) {
-			translate(Vector3.forward * sign * 0.1f);
+			if (rotation) {
+				rotate (Vector3.forward * sign);
+			}
+			else {
+				translate(Vector3.forward * sign * 0.1f);
+			}
 		}
 
 		if (Input.GetKey ("c")) {
@@ -117,6 +137,10 @@ public class SatelliteController : MonoBehaviour {
 		this.currentPosition = calculateSelfAngle ();
 //Debug.Log ("Angle: " + this.currentPosition.getAngle ());
 
+	}
+
+	private void rotate(Vector3 angles) {
+		getSatelliteObject().transform.Rotate(angles);
 	}
 
 	private PositionOfSatellite calculateSelfAngle() {
