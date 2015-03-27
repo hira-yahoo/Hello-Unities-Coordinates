@@ -37,14 +37,14 @@ public class SatelliteController : MonoBehaviour {
 			setVerticalAngle (getSatelliteObject(), this.currentPosition.getVerticalAngle ());
 		}
 
-		if (Input.GetKeyDown ("s")) {
-			seekSatellite();
-		}
-
 		int sign = 1;
 
 		if (Input.GetKey (KeyCode.RightShift) || Input.GetKey (KeyCode.LeftShift)) {
 			sign = -1;
+		}
+
+		if (Input.GetKeyDown ("s")) {
+			seekSatellite(sign == 1);
 		}
 
 		if (Input.GetKey ("x")) {
@@ -66,15 +66,22 @@ public class SatelliteController : MonoBehaviour {
 
 	}
 
-	private void seekSatellite() {
-		while (this.satelliteObjects [seekToNextIndex()] == null) {	}
+	private void seekSatellite(bool sign) {
+		while (this.satelliteObjects [seekToNextIndex(sign)] == null) {	}
 		this.currentPosition = calculateSelfAngle ();
 	}
 
-	private int seekToNextIndex() {
-		this.currentSatellite++;
-		if (this.currentSatellite >= this.satelliteObjects.Length) {
-			this.currentSatellite = 0;
+	private int seekToNextIndex(bool sign) {
+		if (sign) {
+			this.currentSatellite++;
+			if (this.currentSatellite >= this.satelliteObjects.Length) {
+				this.currentSatellite = 0;
+			}
+		} else {
+			this.currentSatellite--;
+			if (this.currentSatellite < 0) {
+				this.currentSatellite = this.satelliteObjects.Length - 1;
+			}
 		}
 		return this.currentSatellite;
 	}
