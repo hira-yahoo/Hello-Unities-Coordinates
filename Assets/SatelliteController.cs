@@ -4,18 +4,26 @@ using System.Collections;
 public class SatelliteController : MonoBehaviour {
 
 	public GameObject fixedStar;
-	public GameObject satelliteObject;
+	private GameObject satelliteObject;
+	private int currentSatellite = 0;
+	public GameObject[] satelliteObjects;
 
 	private PositionOfSatellite currentPosition;
 
 	// Use this for initialization
 	void Start () {
-		if (this.satelliteObject == null) {
-			this.satelliteObject = gameObject;
+		if (this.satelliteObjects.Length == 0) {
+			this.satelliteObjects = new GameObject[]{gameObject};
 		}
+		else if (this.satelliteObjects [0] == null) {
+			this.satelliteObjects [0] = gameObject;
+		}
+
+		satelliteObject = this.satelliteObjects [0];
+
 		this.currentPosition = calculateSelfAngle ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown ("f")) {
